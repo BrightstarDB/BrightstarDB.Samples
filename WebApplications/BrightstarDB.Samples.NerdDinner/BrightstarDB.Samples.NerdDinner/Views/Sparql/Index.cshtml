@@ -1,12 +1,17 @@
 ﻿<h2>SPARQL</h2>
 
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
-   
-    <p>Enter your SPARQL query in the text box below:</p>
-    @Html.TextArea("query", "SELECT ?d WHERE {?d a <http://brightstardb.com/namespaces/default/Dinner>}", 10, 50, null)
+<div class="row">
+    <div class="col-md-10">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                <label for="query">Enter your SPARQL query in the text box below:</label>
 
-        <p>
-            <input type="submit" value="Query" />
-        </p>
-}
+                @Html.TextArea("query", "SELECT ?d WHERE {?d a <http://brightstardb.com/namespaces/default/Dinner>}", 10, 50, new {@class = "form-control"})
+            </div>
+
+            <button type="submit" class="btn btn-default">Query</button>
+        }
+    </div>
+</div>
