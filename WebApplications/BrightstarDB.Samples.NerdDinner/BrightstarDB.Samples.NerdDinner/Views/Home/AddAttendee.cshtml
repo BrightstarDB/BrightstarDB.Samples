@@ -1,0 +1,18 @@
+﻿@model BrightstarDB.Samples.NerdDinner.Models.IRSVP
+
+<h2>Join A Dinner</h2>
+<p>To join the dinner "@ViewBag.Dinner.Title" on "@ViewBag.Dinner.EventDate.ToLongDateString()", enter your email address below and click RSVP.</p>
+
+@using(@Html.BeginForm("AddAttendee", "Home")) {
+    @Html.ValidationSummary(true)
+    @Html.Hidden("DinnerId", ViewBag.Dinner.Id as string)
+    <div class="form-group">
+        @Html.LabelFor(m=>m.AttendeeEmail)
+        @Html.TextBoxFor(m=>m.AttendeeEmail, new {@class="form-control"})
+        @Html.ValidationMessageFor(m=>m.AttendeeEmail)
+    </div>
+<p><input type="submit" value="Register" class="btn btn-default"/></p>
+}
+<div>
+    @Html.ActionLink("Back To List", "Index")
+</div>
