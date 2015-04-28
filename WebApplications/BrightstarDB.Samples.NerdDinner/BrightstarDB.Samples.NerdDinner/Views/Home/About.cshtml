@@ -1,0 +1,31 @@
+﻿@using System.Web.UI.WebControls
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "About"; 
+}
+
+<h2>BrightstarDB Nerd Dinner Sample</h2>
+
+<p>This is a simple MVC example that uses BrightstarDB for persistence.
+    It is based on the NerdDinner examples of <a href="http://weblogs.asp.net/scottgu">Scott Guthrie</a>. It is not intended to
+    be a complete <a href="http://www.nerddinner.com/">NerdDinner</a> site, but is really just an excuse to show
+    off some of the features of BrightstarDB and how easy it is to use our code-first data-binding with ASP.NET.
+</p>
+
+<p>This sample site is built from a standard ASP.NET 4 MVC solution template and it shows off the following features of BrightstarDB:</p>
+
+<ul>
+    <li>A model contract defined in interfaces (in the Models directory) with a text template that generates a data-binding context.</li>
+    <li>Simple CRUD operations using the data-binding context.</li>
+    <li>Using LINQ to query the store</li>
+    <li>A simple membership provider and role provider backed by BrightstarDB</li>
+    <li>Different ways to expose the data to developers:
+        <ul>
+            <li>As an OData service endpoint</li>
+            <li>As a SPARQL query endpoint</li>
+        </ul>
+    </li>
+</ul>
+
+<p>This sample is built using BrightstarDB @Model.BrightstarVersion</p>
+
