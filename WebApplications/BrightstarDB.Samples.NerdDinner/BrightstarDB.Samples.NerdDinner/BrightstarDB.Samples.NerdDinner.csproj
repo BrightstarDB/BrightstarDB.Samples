@@ -62,7 +62,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -147,11 +150,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NerdDinnerContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="OData.svc.cs">
+      <DependentUpon>OData.svc</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\odata.png" />
+    <Content Include="Content\sparql-64.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -160,6 +168,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NerdDinnerContext.cs</LastGenOutput>
     </Content>
+    <Content Include="OData.svc" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
