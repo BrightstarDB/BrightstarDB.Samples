@@ -23,6 +23,10 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/OData.svc" title="OData Feed"><img src="~/Content/OData.png" width="32px" alt="OData Logo"/></a></li>
+                    <li><a href="/sparql" title="SPARQL Query Endpoint"><img src="~/Content/sparql-64.png" width="32px" alt="SPARQL Logo"/></a></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -30,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>This is the footer!</p>
+            <p>Powered by <a href="http://brightstardb.com/">BrightstarDB</a></p>
         </footer>
     </div>
 
