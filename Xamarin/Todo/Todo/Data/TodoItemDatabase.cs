@@ -8,64 +8,47 @@ namespace Todo
 	public class TodoItemDatabase 
 	{
 	    private readonly string _connectionString;
+	    private MyEntityContext _context;
 
 		public TodoItemDatabase()
 		{
 		    _connectionString = DependencyService.Get<IBrightstarConnectionStringProvider>().GetConnectionString();
-		}
+		    _context = new MyEntityContext(_connectionString);
+        }
 
-
-	    private MyEntityContext GetContext()
-	    {
-	        return new MyEntityContext(_connectionString);
-	    }
 
 		public IEnumerable<ITodoItem> GetItems ()
 		{
-		    using (var context = GetContext())
-		    {
-		        return context.TodoItems.ToList();
-		    }
+		    return _context.TodoItems.ToList();
 		}
 
 		public IEnumerable<ITodoItem> GetItemsNotDone ()
 		{
-		    using (var context = GetContext())
-		    {
-		        return context.TodoItems.Where(x => !x.Done);
-		    }
+		    return _context.TodoItems.Where(x => !x.Done);
 		}
 
 		public ITodoItem GetItem (string id) 
 		{
-		    using (var context = GetContext())
-		    {
-		        return context.TodoItems.FirstOrDefault(x => x.ID.Equals(id));
-		    }
+		   return _context.TodoItems.FirstOrDefault(x => x.ID.Equals(id));
 		}
 
 		public string SaveItem (TodoItem item) 
 		{
-		    using (var context = GetContext())
+		    if (item.ID == null)
 		    {
-                // Ensure we don't try to attach an item that is already attached to a different context instance
-                if (item.IsAttached) item.Detach();
-		        context.TodoItems.AddOrUpdate(item);
-                context.SaveChanges();
+		        _context.TodoItems.Add(item);
 		    }
+            _context.SaveChanges();
 		    return item.ID;
 		}
 
 		public int DeleteItem(string id)
 		{
-		    using (var context = GetContext())
-		    {
-		        var toDelete = context.TodoItems.FirstOrDefault(x => x.ID.Equals(id));
-		        if (toDelete == null) return 0;
-		        context.DeleteObject(toDelete);
-		        context.SaveChanges();
-		        return 1;
-		    }
+		    var toDelete = _context.TodoItems.FirstOrDefault(x => x.ID.Equals(id));
+		    if (toDelete == null) return 0;
+		    _context.DeleteObject(toDelete);
+		    _context.SaveChanges();
+		    return 1;
 		}
 	}
 }
